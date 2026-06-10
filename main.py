@@ -16,7 +16,7 @@ app = FastAPI()
 # Enable CORS so your GitHub Pages frontend can talk to this Render backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, replace "*" with your GitHub Pages URL
+    allow_origins=["https://wmspeter.github.io/conlang/"], # In production, replace "*" with your GitHub Pages URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -34,7 +34,7 @@ try:
     
     # Replace with your actual Firebase Realtime Database URL
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://YOUR-PROJECT-ID.firebaseio.com/' 
+        'databaseURL': 'https://conlang000-default-rtdb.asia-southeast1.firebasedatabase.app/' 
     })
 except Exception as e:
     print(f"Firebase initialization warning: {e}")
