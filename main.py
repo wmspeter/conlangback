@@ -13,11 +13,11 @@ from firebase_admin import credentials, db
 
 app = FastAPI()
 
-# Enable CORS so your GitHub Pages frontend can talk to this Render backend
+# Enable CORS to accept requests from your frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://wmspeter.github.io/conlang/"], # In production, replace "*" with your GitHub Pages URL
-    allow_credentials=True,
+    allow_origins=["*"], # Allow any origin (localhost, GitHub Pages, etc.)
+    allow_credentials=False, # CRITICAL: This MUST be False when origins is "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )
