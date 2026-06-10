@@ -70,7 +70,7 @@ def add_word(entry: LogographEntry):
     try:
         # Step A: Convert the meaning text into a vector using text-embedding-004
         response = genai_client.models.embed_content(
-            model="text-embedding-004",
+            model="gemini-embedding-2",
             contents=entry.meaning
         )
         # Extract the coordinate array
@@ -97,7 +97,7 @@ def search_lexicon(q: str):
     try:
         # Step A: Convert the user's search query into a target vector
         response = genai_client.models.embed_content(
-            model="text-embedding-004",
+            model="gemini-embedding-2",
             contents=q
         )
         query_vector = response.embeddings[0].values
