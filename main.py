@@ -91,6 +91,19 @@ def edit_word(word_id: str, entry: LogographEntry):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.delete("/delete_word/{word_id}")
+def delete_word(word_id: str):
+    try:
+        ref = db.reference(f"my_personal_lexicon/{word_id}")
+        if not ref.get():
+            raise HTTPException(status_code=404, detail="Word not found")
+        
+        # Deletes the word entirely from Firebase
+        ref.delete()
+        return {"status": "success"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/search")
 def search_lexicon(q: str, limit: int = 10): # Limit parameter added
     try:
